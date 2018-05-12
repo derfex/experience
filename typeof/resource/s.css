@@ -1,0 +1,38 @@
+html {
+  display: flex;
+  background: #333;
+  color: #ddd;
+  font-family: sans-serif;
+}
+
+body {
+  margin: auto
+}
+
+article {
+  margin-top: 3em
+}
+
+code {
+  margin: 0;
+  border-radius: 3px;
+  padding: .2em .4em;
+  background: #ddd;
+  color: #333;
+}
+
+table {
+  font-family: monospace
+}
+
+td, th {
+  padding: 2px 4px
+}
+
+.warn {
+  background: #c0901c
+}
+
+.info {
+  background: #573
+}
