@@ -21,10 +21,10 @@
   _eval.expressionsKeys = Object.keys(_eval.expressions);
 
   // ## Некоторые выражения не могут быть преобразованы к строке самостоятельно.
-  function _toString(data) {
-    return !~_toString.expressionsKeys.indexOf(data[0])
-      ? data[1]
-      : _toString.expressions[data[0]];
+  function _toString(expression, value) {
+    return !~_toString.expressionsKeys.indexOf(expression)
+      ? value
+      : _toString.expressions[expression];
   }
 
   _toString.expressions = {
@@ -62,9 +62,16 @@
       `;
 
     dataArray.forEach(data => {
-      const attrClass = ' class="' + (_isCorrectType(data[2], data[3]) ? 'info' : 'warn') + '"';
-      HTML += '            <tr' + attrClass + '><td>' + data[0] + '</td><td>' + _toString(data) + '</td><td>' +
-        data[2] + '</td><td>' + data[3] + '</td></tr>' + '\n';
+      const [
+        expression,
+        value,
+        type,
+        _class_,
+      ] = data;
+      const attrClass = ' class="' + (_isCorrectType(type, _class_) ? 'info' : 'warn') + '"';
+      const valueString = _toString(expression, value);
+      HTML += '            <tr' + attrClass + '><td>' + expression + '</td><td>' + valueString + '</td><td>' +
+        type + '</td><td>' + _class_ + '</td></tr>' + '\n';
     });
 
     HTML += `
