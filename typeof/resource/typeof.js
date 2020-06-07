@@ -10,28 +10,26 @@
 
   // ## Некоторые выражения функция `eval()` интерпретирует неверно.
   function _eval(expression) {
-    return !~_eval.expressionsKeys.indexOf(expression)
+    return !_eval.expressions.has(expression)
       ? eval(expression)
-      : _eval.expressions[expression];
+      : _eval.expressions.get(expression);
   }
 
-  _eval.expressions = {
-    '{}': {},
-  };
-  _eval.expressionsKeys = Object.keys(_eval.expressions);
+  _eval.expressions = new Map([
+    ['{}', {}],
+  ]);
 
   // ## Некоторые выражения не могут быть преобразованы к строке самостоятельно.
   function _toString(expression, value) {
-    return !~_toString.expressionsKeys.indexOf(expression)
+    return !_toString.expressions.has(expression)
       ? value
-      : _toString.expressions[expression];
+      : _toString.expressions.get(expression);
   }
 
-  _toString.expressions = {
-    'Object.create(null)': '{} (без прототипа)',
-    'Symbol("abc")': '—',
-  };
-  _toString.expressionsKeys = Object.keys(_toString.expressions);
+  _toString.expressions = new Map([
+    ['Object.create(null)', '{} (без прототипа)'],
+    ['Symbol("abc")', '—'],
+  ]);
 
   // ## Получить данные по массиву выражений.
   function _getDataByExpressions(expressions) {
