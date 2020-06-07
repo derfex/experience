@@ -17,6 +17,8 @@
 Под индексом `3` — значение внутреннего свойства `[[Class]]` объекта — назовём это *Класс*.
 
 Как хорошо видно, *Тип* может быть абсолютно любым, но не логичным результатом.
+*Тип* и *Класс* функций однозначно совпали бы, если бы не *Тип* `function` у регулярных выражений в движках Nitro и V8
+([источник — таблица из вдохновляющей статьи](https://bonsaiden.github.io/JavaScript-Garden/ru/#types.typeof)).
 
 Для того, чтобы получить значение `[[Class]]`, необходимо вызвать метод `toString` у `Object.prototype`.
 
@@ -66,4 +68,4 @@ typeof foo !== 'undefined'
 
 Кроме случая проверки, была ли определена переменная, `typeof` следует избегать **во что бы то ни стало**.
 
-Вдохновение: [JavaScript-Garden](http://bonsaiden.github.io/JavaScript-Garden/ru/).
+Вдохновение: [JavaScript-Garden](https://bonsaiden.github.io/JavaScript-Garden/ru/).
